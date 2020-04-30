@@ -16,11 +16,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/textView_password_log_in"
         app:layout_constraintVertical_bias="0.355" />
 
     <EditText
-        android:id="@+id/textViewPasswordLogIn"
+        android:id="@+id/textView_password_log_in"
         android:layout_width="407dp"
         android:layout_height="51dp"
         android:hint="Password"
@@ -30,11 +30,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmailLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/textView_email_log_in"
         app:layout_constraintVertical_bias="0.3" />
 
     <EditText
-        android:id="@+id/textViewEmailLogIn"
+        android:id="@+id/textView_email_log_in"
         android:layout_width="405dp"
         android:layout_height="71dp"
         android:layout_marginTop="116dp"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/registerForAccountTextView"
+        android:id="@+id/textView_register_for_account"
         android:layout_width="279dp"
         android:layout_height="20dp"
         android:text="Sign up for Account ?"

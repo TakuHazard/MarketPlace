@@ -6,20 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_register)
 
         btnRegister.setOnClickListener {
 
             performRegiser()
         }
 
-        existingAccountRegisterTextView.setOnClickListener {
+        textView_existing_account.setOnClickListener {
             val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
             finish()
@@ -30,11 +30,11 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun performRegiser() {
 
-        val email = textViewEmailRegister.text.toString()
+        val email = textView_email_register.text.toString()
 
-        val userName = textViewUserNameRegister.text.toString()
+        val userName = textView_username_register.text.toString()
 
-        val password = textViewPasswordRegister.text.toString()
+        val password = textView_password_register.text.toString()
 
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_LONG).show()

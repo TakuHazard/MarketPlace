@@ -15,7 +15,7 @@ class LogInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_log_in)
 
 
-        registerForAccountTextView.setOnClickListener {
+        textView_register_for_account.setOnClickListener {
             val intent = Intent(this,RegisterActivity::class.java)
             startActivity(intent)
             finish()
@@ -23,8 +23,8 @@ class LogInActivity : AppCompatActivity() {
         }
 
         btnLogIn.setOnClickListener {
-            val email = textViewEmailLogIn.text.toString()
-            val password = textViewPasswordLogIn.text.toString()
+            val email = textView_email_log_in.text.toString()
+            val password = textView_password_log_in.text.toString()
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password).addOnSuccessListener {
                 Log.d("LogInActivity","Successful login")
 
