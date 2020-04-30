@@ -32,7 +32,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="DARK MODE"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="More settings"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
         android:text="Karma: "
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/primaryColor"
         app:layout_constraintStart_toEndOf="@+id/profile_picture_profile"
         app:layout_constraintTop_toTopOf="@+id/profile_picture_profile" />
 
