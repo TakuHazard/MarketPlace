@@ -3,9 +3,12 @@ package videodemos.example.marketplace
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.LoginFilter
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -51,6 +54,8 @@ class RegisterActivity : AppCompatActivity() {
                     "RegisterActivity",
                     "successfully created user with uid: ${it.result?.user?.uid}"
                 )
+                Log.d("RegisterActivity","calling databse")
+                saveToDatabase(userName)
 
             }
             .addOnFailureListener {
@@ -59,4 +64,28 @@ class RegisterActivity : AppCompatActivity() {
                     .show()
             }
     }
+
+    private fun saveToDatabase(username: String) {
+        Log.d("RegisterActivity","Inside db")
+        Log.d("RegisterActivity",username)
+
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+
+        val ref = FirebaseDatabase.getInstance().getReference("users/$uid")
+
+        Log.d("RegisterActivity",ref.toString())
+        val defaultKarma = 0
+
+        val user = User(uid,username,defaultKarma)
+
+        Log.d("RegisterActivity",user.toString())
+
+        ref.setValue(user).addOnSuccessListener{
+            Log.d("RegisterActivity","Finally saved the user to Firebase DB")
+        }
+
+        Log.d("RegisterActivity","done")
+    }
 }
+
+class User(val uid:String, val username : String, val defaultKarma : Int)
