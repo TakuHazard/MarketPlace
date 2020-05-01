@@ -35,10 +35,10 @@
         android:id="@+id/ib_filters"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1"
         android:layout_marginEnd="8dp"
-        android:background="@color/primaryColor"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="@+id/sv_filter_listings"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/sv_filter_listings"
         app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />

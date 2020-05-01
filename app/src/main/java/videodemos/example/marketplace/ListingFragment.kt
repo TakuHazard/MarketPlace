@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.selection.StableIdKeyProvider
-import androidx.recyclerview.selection.StorageStrategy
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import videodemos.example.marketplace.model.Listing
 
 class ListingFragment : Fragment() {
-
     private lateinit var rootView: View
 
     override fun onCreateView(
@@ -24,7 +22,7 @@ class ListingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        rootView = inflater.inflate(R.layout.activity_listing, container, false)
+        rootView = inflater.inflate(R.layout.fragment_listing, container, false)
 
         setupRecyclerView()
         setupButtons()
@@ -38,7 +36,7 @@ class ListingFragment : Fragment() {
         val listingsDataSet = getDummyListings()
 
         val viewAdapter : RecyclerView.Adapter<*> = ListingAdapter(listingsDataSet)
-        val viewManager : RecyclerView.LayoutManager = LinearLayoutManager(activity)
+        val viewManager : RecyclerView.LayoutManager = GridLayoutManager(activity, 1)
 
         listingsContainer.apply {
             setHasFixedSize(true)
@@ -48,14 +46,6 @@ class ListingFragment : Fragment() {
             adapter = viewAdapter
         }
 
-//        var tracker = SelectionTracker.Builder(
-//            "my-selection-id",
-//            listingsContainer,
-//            StableIdKeyProvider(listingsContainer),
-//            MyDetailsLookup(listingsContainer),
-//            StorageStrategy.createLongStorage())
-//            .withOnItemActivatedListener(myItemActivatedListener)
-//            .build()
     }
 
     private fun getDummyListings() : MutableList<Listing>{
@@ -91,7 +81,25 @@ class ListingFragment : Fragment() {
         val addNewListing : Button = rootView.findViewById(R.id.btn_post_new_listing)
         addNewListing.setOnClickListener{
             Toast.makeText(activity, "Button Clicked!", Toast.LENGTH_LONG).show()
+
         }
 
+        val filtersDropDown : ImageButton = rootView.findViewById(R.id.ib_filters)
+        filtersDropDown.setOnClickListener{
+            changeNumberOfCardsPerRow()
+        }
+
+    }
+
+    private fun changeNumberOfCardsPerRow() {
+        val listingsContainer = rootView.findViewById<RecyclerView>(R.id.rv_listings)
+        listingsContainer.apply{
+            if ((layoutManager as GridLayoutManager).spanCount == 1){
+                layoutManager = GridLayoutManager(activity, 2)
+            } else {
+                layoutManager = GridLayoutManager(activity, 1)
+            }
+
+        }
     }
 }
