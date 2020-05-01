@@ -18,13 +18,12 @@ private const val SECTION_NUMBER = "sectionNumber"
  */
 class ProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var sectionNumber: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(SECTION_NUMBER)
+            sectionNumber = it.getString(SECTION_NUMBER)
         }
     }
 
@@ -41,8 +40,7 @@ class ProfileFragment : Fragment() {
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
+         * @param param1 Section number.
          * @return A new instance of fragment ProfileFragment.
          */
         // TODO: Rename and change types and number of parameters
