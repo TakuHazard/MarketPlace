@@ -1,11 +1,10 @@
 package videodemos.example.marketplace
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.LoginFilter
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
@@ -54,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
                     "RegisterActivity",
                     "successfully created user with uid: ${it.result?.user?.uid}"
                 )
-                Log.d("RegisterActivity","calling databse")
+                Log.d("RegisterActivity", "calling database")
                 saveToDatabase(userName)
 
             }
@@ -66,26 +65,28 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveToDatabase(username: String) {
-        Log.d("RegisterActivity","Inside db")
-        Log.d("RegisterActivity",username)
+        Log.d("RegisterActivity", "Inside db")
+        Log.d("RegisterActivity", username)
 
         val uid = FirebaseAuth.getInstance().uid ?: ""
 
-        val ref = FirebaseDatabase.getInstance().getReference("users/$uid")
+        val ref = FirebaseDatabase
+            .getInstance()
+            .getReference("/users/$uid")
 
-        Log.d("RegisterActivity",ref.toString())
+        Log.d("RegisterActivity", ref.toString())
         val defaultKarma = 0
 
-        val user = User(uid,username,defaultKarma)
+        val user = User(uid, username, defaultKarma)
 
-        Log.d("RegisterActivity",user.toString())
+        Log.d("RegisterActivity", user.toString())
 
-        ref.setValue(user).addOnSuccessListener{
-            Log.d("RegisterActivity","Finally saved the user to Firebase DB")
+        ref.setValue(user).addOnSuccessListener {
+            Log.d("RegisterActivity", "Finally saved the user to Firebase DB")
         }
 
-        Log.d("RegisterActivity","done")
+        Log.d("RegisterActivity", "done")
     }
 }
 
-class User(val uid:String, val username : String, val defaultKarma : Int)
+class User(val uid: String, val username: String, val defaultKarma: Int)
