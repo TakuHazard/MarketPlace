@@ -13,7 +13,37 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Post New Listing"
+        android:text="@string/post_new_listing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/sv_filter_listings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_outline"
+        app:layout_constraintEnd_toStartOf="@+id/ib_filters"
+        app:layout_constraintStart_toStartOf="@+id/btn_post_new_listing"
+        app:layout_constraintTop_toBottomOf="@+id/btn_post_new_listing" />
+
+    <ImageButton
+        android:id="@+id/ib_filters"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/sv_filter_listings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sv_filter_listings"
+        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_listings"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sv_filter_listings" />
 </androidx.constraintlayout.widget.ConstraintLayout>
