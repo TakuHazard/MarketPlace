@@ -2,6 +2,7 @@ package videodemos.example.marketplace
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +16,8 @@ class ListingAdapter(private val listingsDataSet: MutableList<Listing>) :
     // Each data item is just a string in this case that is shown in a TextView.
     class MyViewHolder(val card: CardView) : RecyclerView.ViewHolder(card){
         val title : TextView = card.findViewById(R.id.tv_card_listing_title)
-
+        val picture : ImageView = card.findViewById(R.id.iv_card_listing_image)
+        val cost : TextView = card.findViewById(R.id.tv_card_listing_cost)
     }
 
 
@@ -34,7 +36,10 @@ class ListingAdapter(private val listingsDataSet: MutableList<Listing>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.title.text = listingsDataSet[position].title
+        val currentListing = listingsDataSet[position]
+        holder.title.text = currentListing.title
+        holder.picture.setImageResource(currentListing.imageId)
+        holder.cost.text = currentListing.cost.toString()
     }
 
     // Return the size of your dataset (invoked by the layout manager)

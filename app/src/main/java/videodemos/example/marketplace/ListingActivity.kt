@@ -35,9 +35,9 @@ class ListingActivity : AppCompatActivity() {
     }
 
     private fun getDummyListings() : MutableList<Listing>{
-        val listingA = Listing("MyListingA", 25, "MyDescription", 0, mutableListOf("one", "two"))
-        val listingB = Listing("MyListingB", 25, "MyDescription", 0, mutableListOf("one", "two"))
-        val listingC = Listing("MyListingC", 25, "MyDescription", 0, mutableListOf("one", "two"))
+        val listingA = Listing("Backpack", 10, "MyDescription", 0, mutableListOf("one", "two"), R.drawable.test_backpack)
+        val listingB = Listing("Iphone 11", 300, "MyDescription", 0, mutableListOf("one", "two"), R.drawable.test_iphone)
+        val listingC = Listing("Chair", 30, "MyDescription", 0, mutableListOf("one", "two"), R.drawable.test_chair)
 
         return mutableListOf(listingA, listingB, listingC)
     }
