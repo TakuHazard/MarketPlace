@@ -15,4 +15,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listingFragment"
+        android:name="videodemos.example.marketplace.ListingFragment">
+
+    </fragment>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package videodemos.example.marketplace
+package videodemos.example.marketplace.model
 
 data class Listing(var title: String,
                    var cost: Int,

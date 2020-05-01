@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import videodemos.example.marketplace.model.Listing
 
 class ListingAdapter(private val listingsDataSet: MutableList<Listing>) :
     RecyclerView.Adapter<ListingAdapter.MyViewHolder>() {
