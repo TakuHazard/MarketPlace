@@ -7,9 +7,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
+
+    private val defaultProfileImageUrl = "default_profile_image.png"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LogInActivity::class.java)
             startActivity(intent)
             finish()
-
         }
 
     }
@@ -75,17 +77,41 @@ class RegisterActivity : AppCompatActivity() {
 
         Log.d("RegisterActivity", ref.toString())
         val defaultKarma = 0
+        var defaultImageUrl = ""
 
-        val user = User(uid, username, defaultKarma)
+        val defaultImage = FirebaseStorage
+            .getInstance()
+            .getReference(defaultProfileImageUrl)
+        defaultImage
+            .downloadUrl
+            .addOnSuccessListener {
+                Log.d("RegisterActivity", it.toString())
+                defaultImageUrl = it.toString()
+            }
+            .addOnFailureListener {
+                Log.d(
+                    "RegisterActivity",
+                    "Failed to retrieve default profile image url from database."
+                )
+            }
+            .addOnCompleteListener {
+                val user = User(uid, username, defaultKarma, defaultImageUrl)
 
-        Log.d("RegisterActivity", user.toString())
+                Log.d("RegisterActivity", user.toString())
 
-        ref.setValue(user).addOnSuccessListener {
-            Log.d("RegisterActivity", "Finally saved the user to Firebase DB")
-        }
+                ref.setValue(user)
+                    .addOnSuccessListener {
+                        Log.d("RegisterActivity", "Finally saved the user to Firebase DB")
+                    }
 
-        Log.d("RegisterActivity", "done")
+                Log.d("RegisterActivity", "done")
+            }
     }
 }
 
-class User(val uid: String, val username: String, val defaultKarma: Int)
+class User(
+    val uid: String,
+    val username: String,
+    val defaultKarma: Int,
+    val profileImageUrl: String
+)
