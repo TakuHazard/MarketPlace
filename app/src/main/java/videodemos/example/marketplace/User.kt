@@ -1,10 +1,10 @@
 package videodemos.example.marketplace
 
 class User(
-    val uid: String,
-    val username: String,
-    val karma: Int,
-    val profileImageUrl: String
+    var uid: String,
+    var username: String,
+    var karma: Int,
+    var profileImageUrl: String
 ) {
     constructor() : this("", "", 0, "")
 }

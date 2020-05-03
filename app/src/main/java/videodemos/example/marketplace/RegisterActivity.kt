@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val defaultProfileImageUrl = "default_profile_image.png"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -81,7 +79,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val defaultImage = FirebaseStorage
             .getInstance()
-            .getReference(defaultProfileImageUrl)
+            .getReference(getString(R.string.default_profile_image))
         defaultImage
             .downloadUrl
             .addOnSuccessListener {
