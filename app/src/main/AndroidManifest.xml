@@ -11,11 +11,10 @@
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".LogInActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
