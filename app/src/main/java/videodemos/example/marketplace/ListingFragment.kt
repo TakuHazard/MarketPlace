@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,6 +16,7 @@ import videodemos.example.marketplace.model.Listing
 
 class ListingFragment : Fragment() {
     private lateinit var rootView: View
+    private lateinit var viewAdapter : ListingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +27,7 @@ class ListingFragment : Fragment() {
         rootView = inflater.inflate(R.layout.fragment_listing, container, false)
 
         setupRecyclerView()
+        setupSearchView()
         setupButtons()
 
         return rootView
@@ -35,7 +38,7 @@ class ListingFragment : Fragment() {
 
         val listingsDataSet = getDummyListings()
 
-        val viewAdapter : RecyclerView.Adapter<*> = ListingAdapter(listingsDataSet)
+        viewAdapter = ListingAdapter(listingsDataSet)
         val viewManager : RecyclerView.LayoutManager = GridLayoutManager(activity, 1)
 
         listingsContainer.apply {
@@ -75,6 +78,29 @@ class ListingFragment : Fragment() {
         )
 
         return mutableListOf(listingA, listingB, listingC)
+    }
+
+    private fun setupSearchView() {
+        val searchView : SearchView = rootView.findViewById(R.id.sv_filter_listings)
+        searchView.setOnClickListener {
+            searchView.isIconified = false
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewAdapter.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+
+
+
     }
 
     private fun setupButtons() {
