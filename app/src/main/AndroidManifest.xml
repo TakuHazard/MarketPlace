@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="videodemos.example.marketplace">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +12,8 @@
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".LogInActivity"></activity>
+        <activity android:name=".RegisterActivity">
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -22,5 +23,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
