@@ -2,6 +2,7 @@ package videodemos.example.marketplace
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
@@ -36,12 +37,27 @@ class ListingAdapter(private val fullListingDataSet : MutableList<Listing>) :
         return MyViewHolder(containerView)
     }
 
+    var lastPosition : Int = -1
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentListing = visibleListingDataSet[position]
         holder.title.text = currentListing.title
         holder.picture.setImageResource(currentListing.imageId)
         holder.cost.text = currentListing.cost.toString()
+
+        val context = holder.itemView.context
+        val animationResource : Int
+
+        if (lastPosition > position){
+            animationResource = R.anim.slide_card_from_top
+        } else {
+            animationResource = R.anim.slide_card_from_bottom
+        }
+
+        lastPosition = position
+
+        val animation = AnimationUtils.loadAnimation(context, animationResource)
+        holder.card.startAnimation(animation)
     }
 
     override fun getItemCount() = visibleListingDataSet.size

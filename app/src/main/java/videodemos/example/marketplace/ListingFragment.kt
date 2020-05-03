@@ -1,5 +1,6 @@
 package videodemos.example.marketplace
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import videodemos.example.marketplace.model.Listing
 
 class ListingFragment : Fragment() {
+
     private lateinit var rootView: View
     private lateinit var viewAdapter : ListingAdapter
 
@@ -77,7 +79,7 @@ class ListingFragment : Fragment() {
             R.drawable.test_chair
         )
 
-        return mutableListOf(listingA, listingB, listingC)
+        return mutableListOf(listingA, listingB, listingC, listingA, listingA, listingB, listingC, listingB)
     }
 
     private fun setupSearchView() {
@@ -98,9 +100,6 @@ class ListingFragment : Fragment() {
             }
 
         })
-
-
-
     }
 
     private fun setupButtons() {
