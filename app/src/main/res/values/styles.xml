@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/primaryDarkColor</item>
+
+        <item name="colorSwitchThumbNormal">#f1f1f1
+        </item>
+
+        <item name="android:colorForeground">@color/primaryLightColor
+        </item>
+    </style>
+
 </resources>
