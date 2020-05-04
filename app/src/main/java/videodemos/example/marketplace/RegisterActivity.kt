@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
+import videodemos.example.marketplace.model.User
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -17,8 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         btnRegister.setOnClickListener {
-
-            performRegiser()
+            performRegister()
         }
 
         textView_existing_account.setOnClickListener {
@@ -26,15 +26,12 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 
-    private fun performRegiser() {
-
+    private fun performRegister() {
+        //TODO: Change to findviewbyid()
         val email = textView_email_register.text.toString()
-
         val userName = textView_username_register.text.toString()
-
         val password = textView_password_register.text.toString()
 
         if (email.isEmpty() || password.isEmpty()) {
@@ -45,9 +42,11 @@ class RegisterActivity : AppCompatActivity() {
         //Firebase Authentication to create a user with email and password
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
-                if (!it.isSuccessful) return@addOnCompleteListener
+                if (!it.isSuccessful) {
+                    return@addOnCompleteListener
+                }
 
-                // else if successful
+                //TODO: Make msg start with uppercase
                 Log.d(
                     "RegisterActivity",
                     "successfully created user with uid: ${it.result?.user?.uid}"
@@ -57,15 +56,19 @@ class RegisterActivity : AppCompatActivity() {
 
             }
             .addOnFailureListener {
+                //TODO: Change Tag to a constant and to be the name of the activity
                 Log.d("Main", "Failed to create user ${it.message}")
-                Toast.makeText(this, "Failed to create user ${it.message}", Toast.LENGTH_LONG)
+                Toast
+                    .makeText(
+                        this,
+                        "Failed to create user ${it.message}",
+                        Toast.LENGTH_LONG
+                    )
                     .show()
             }
     }
 
     private fun saveToDatabase(username: String) {
-        Log.d("RegisterActivity", "Inside db")
-        Log.d("RegisterActivity", username)
 
         val uid = FirebaseAuth.getInstance().uid ?: ""
 
@@ -93,7 +96,12 @@ class RegisterActivity : AppCompatActivity() {
                 )
             }
             .addOnCompleteListener {
-                val user = User(uid, username, defaultKarma, defaultImageUrl)
+                val user = User(
+                    uid,
+                    username,
+                    defaultKarma,
+                    defaultImageUrl
+                )
 
                 Log.d("RegisterActivity", user.toString())
 
@@ -102,8 +110,7 @@ class RegisterActivity : AppCompatActivity() {
                         Log.d("RegisterActivity", "Finally saved the user to Firebase DB")
                     }
 
-                Log.d("RegisterActivity", "done")
-
+                //TODO: Move intent to DashboardActivity
                 val intent = Intent(this, DashboardActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)

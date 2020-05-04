@@ -1,11 +1,9 @@
 package videodemos.example.marketplace
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.SearchView
@@ -36,6 +34,7 @@ class ListingFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        //TODO: Look at Groupie for RecyclerView, https://github.com/lisawray/groupie
         val listingsContainer = rootView.findViewById<RecyclerView>(R.id.rv_listings)
 
         val listingsDataSet = getDummyListings()
@@ -115,25 +114,23 @@ class ListingFragment : Fragment() {
         val addNewListing: Button = rootView.findViewById(R.id.btn_post_new_listing)
         addNewListing.setOnClickListener {
             Toast.makeText(activity, "Button Clicked!", Toast.LENGTH_LONG).show()
-
         }
 
         val filtersDropDown: ImageButton = rootView.findViewById(R.id.ib_filters)
         filtersDropDown.setOnClickListener {
             changeNumberOfCardsPerRow()
         }
-
     }
 
     private fun changeNumberOfCardsPerRow() {
         val listingsContainer = rootView.findViewById<RecyclerView>(R.id.rv_listings)
+        //TODO: Simplify.
         listingsContainer.apply {
-            if ((layoutManager as GridLayoutManager).spanCount == 1) {
-                layoutManager = GridLayoutManager(activity, 2)
+            layoutManager = if ((layoutManager as GridLayoutManager).spanCount == 1) {
+                GridLayoutManager(activity, 2)
             } else {
-                layoutManager = GridLayoutManager(activity, 1)
+                GridLayoutManager(activity, 1)
             }
-
         }
     }
 
@@ -147,5 +144,4 @@ class ListingFragment : Fragment() {
             return ListingFragment()
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package videodemos.example.marketplace
+package videodemos.example.marketplace.model
 
 class User(
     var uid: String,

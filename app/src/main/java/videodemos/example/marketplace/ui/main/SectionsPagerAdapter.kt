@@ -7,23 +7,15 @@ import androidx.fragment.app.FragmentPagerAdapter
 import videodemos.example.marketplace.ListingFragment
 import videodemos.example.marketplace.R
 
-private val TAB_TITLES = arrayOf(
-    R.string.tab_listings,
-    R.string.tab_inventory,
-    R.string.tab_messages,
-    R.string.tab_profile
-)
-
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
+//TODO: Refactor so that is not deprecated
     FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         return when (position) {
             0 -> ListingFragment.newInstance()
             3 -> ProfileFragment.newInstance(position)
@@ -36,7 +28,17 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     }
 
     override fun getCount(): Int {
-        // Show 4 total pages.
-        return 4
+        return NUMBER_OF_TABS
+    }
+
+    companion object {
+        private const val NUMBER_OF_TABS = 4
+
+        private val TAB_TITLES = arrayOf(
+            R.string.tab_listings,
+            R.string.tab_inventory,
+            R.string.tab_messages,
+            R.string.tab_profile
+        )
     }
 }

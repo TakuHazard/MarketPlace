@@ -12,32 +12,34 @@ import androidx.recyclerview.widget.RecyclerView
 import videodemos.example.marketplace.model.Listing
 import java.util.*
 
-class ListingAdapter(private val fullListingDataSet : MutableList<Listing>) :
+class ListingAdapter(private val fullListingDataSet: MutableList<Listing>) :
     RecyclerView.Adapter<ListingAdapter.MyViewHolder>(),
-    Filterable{
+    Filterable {
 
     private val visibleListingDataSet = mutableListOf<Listing>()
+    private var lastPosition: Int = -1
 
     init {
         visibleListingDataSet.addAll(fullListingDataSet)
     }
 
-    class MyViewHolder(val card: CardView) : RecyclerView.ViewHolder(card){
-        val title : TextView = card.findViewById(R.id.tv_card_listing_title)
-        val picture : ImageView = card.findViewById(R.id.iv_card_listing_image)
-        val cost : TextView = card.findViewById(R.id.tv_card_listing_cost)
+    class MyViewHolder(val card: CardView) : RecyclerView.ViewHolder(card) {
+        //TODO: Trader name on card, show description when user taps on the card, show tags
+        val title: TextView = card.findViewById(R.id.tv_card_listing_title)
+        val picture: ImageView = card.findViewById(R.id.iv_card_listing_image)
+        val cost: TextView = card.findViewById(R.id.tv_card_listing_cost)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): ListingAdapter.MyViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ListingAdapter.MyViewHolder {
 
         val containerView = LayoutInflater.from(parent.context)
             .inflate(R.layout.listing_item, parent, false) as CardView
 
         return MyViewHolder(containerView)
     }
-
-    var lastPosition : Int = -1
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentListing = visibleListingDataSet[position]
@@ -46,9 +48,9 @@ class ListingAdapter(private val fullListingDataSet : MutableList<Listing>) :
         holder.cost.text = currentListing.cost.toString()
 
         val context = holder.itemView.context
-        val animationResource : Int
+        val animationResource: Int
 
-        if (lastPosition > position){
+        if (lastPosition > position) {
             animationResource = R.anim.slide_card_from_top
         } else {
             animationResource = R.anim.slide_card_from_bottom
@@ -63,13 +65,14 @@ class ListingAdapter(private val fullListingDataSet : MutableList<Listing>) :
     override fun getItemCount() = visibleListingDataSet.size
 
     override fun getFilter(): Filter {
+        //TODO: Filter on multiple types of data
         val textFilter = object : Filter() {
 
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val textFilter = constraint.toString().toLowerCase(Locale.getDefault())
                 val filteredListingDataSet = mutableListOf<Listing>()
 
-                if (textFilter.isEmpty()){
+                if (textFilter.isEmpty()) {
                     filteredListingDataSet.addAll(fullListingDataSet)
                 } else {
                     filteredListingDataSet.addAll(fullListingDataSet.filter {

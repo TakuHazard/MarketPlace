@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import videodemos.example.marketplace.R
 import videodemos.example.marketplace.RegisterActivity
-import videodemos.example.marketplace.User
+import videodemos.example.marketplace.model.User
 import java.util.*
 
 /**
