@@ -18,7 +18,7 @@ import videodemos.example.marketplace.model.Listing
 class ListingFragment : Fragment() {
 
     private lateinit var rootView: View
-    private lateinit var viewAdapter : ListingAdapter
+    private lateinit var viewAdapter: ListingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +41,7 @@ class ListingFragment : Fragment() {
         val listingsDataSet = getDummyListings()
 
         viewAdapter = ListingAdapter(listingsDataSet)
-        val viewManager : RecyclerView.LayoutManager = GridLayoutManager(activity, 1)
+        val viewManager: RecyclerView.LayoutManager = GridLayoutManager(activity, 1)
 
         listingsContainer.apply {
             setHasFixedSize(true)
@@ -53,7 +53,7 @@ class ListingFragment : Fragment() {
 
     }
 
-    private fun getDummyListings() : MutableList<Listing>{
+    private fun getDummyListings(): MutableList<Listing> {
         val listingA = Listing(
             "Backpack",
             10,
@@ -79,16 +79,25 @@ class ListingFragment : Fragment() {
             R.drawable.test_chair
         )
 
-        return mutableListOf(listingA, listingB, listingC, listingA, listingA, listingB, listingC, listingB)
+        return mutableListOf(
+            listingA,
+            listingB,
+            listingC,
+            listingA,
+            listingA,
+            listingB,
+            listingC,
+            listingB
+        )
     }
 
     private fun setupSearchView() {
-        val searchView : SearchView = rootView.findViewById(R.id.sv_filter_listings)
+        val searchView: SearchView = rootView.findViewById(R.id.sv_filter_listings)
         searchView.setOnClickListener {
             searchView.isIconified = false
         }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewAdapter.filter.filter(query)
                 return false
@@ -103,14 +112,14 @@ class ListingFragment : Fragment() {
     }
 
     private fun setupButtons() {
-        val addNewListing : Button = rootView.findViewById(R.id.btn_post_new_listing)
-        addNewListing.setOnClickListener{
+        val addNewListing: Button = rootView.findViewById(R.id.btn_post_new_listing)
+        addNewListing.setOnClickListener {
             Toast.makeText(activity, "Button Clicked!", Toast.LENGTH_LONG).show()
 
         }
 
-        val filtersDropDown : ImageButton = rootView.findViewById(R.id.ib_filters)
-        filtersDropDown.setOnClickListener{
+        val filtersDropDown: ImageButton = rootView.findViewById(R.id.ib_filters)
+        filtersDropDown.setOnClickListener {
             changeNumberOfCardsPerRow()
         }
 
@@ -118,8 +127,8 @@ class ListingFragment : Fragment() {
 
     private fun changeNumberOfCardsPerRow() {
         val listingsContainer = rootView.findViewById<RecyclerView>(R.id.rv_listings)
-        listingsContainer.apply{
-            if ((layoutManager as GridLayoutManager).spanCount == 1){
+        listingsContainer.apply {
+            if ((layoutManager as GridLayoutManager).spanCount == 1) {
                 layoutManager = GridLayoutManager(activity, 2)
             } else {
                 layoutManager = GridLayoutManager(activity, 1)
@@ -127,4 +136,16 @@ class ListingFragment : Fragment() {
 
         }
     }
+
+    companion object {
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        @JvmStatic
+        fun newInstance(): ListingFragment {
+            return ListingFragment()
+        }
+    }
+
 }
