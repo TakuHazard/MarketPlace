@@ -1,8 +1,20 @@
 <resources>
     <string name="app_name">MarketPlace</string>
+    <string name="password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up_for_account">Sign up for Account?</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="tab_listings">Listings</string>
     <string name="tab_inventory">Inventory</string>
     <string name="tab_messages">Messages</string>
     <string name="tab_profile">Profile</string>
+    <string name="karma_template">Karma: %d</string>
+    <string name="more_settings">More settings</string>
+    <string name="dark_mode">DARK MODE</string>
+    <string name="log_out">Log out</string>
+    <string name="default_profile_image">default_profile_image.png</string>
 </resources>
